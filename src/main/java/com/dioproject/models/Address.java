@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -13,7 +15,8 @@ import lombok.NoArgsConstructor;
 public class Address {
 
     @Id
-    private Long cep;
+    @NotEmpty(message = "CEP is required")
+    private String cep;
     private String logradouro;
     private String complemento;
     private String bairro;

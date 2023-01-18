@@ -1,35 +1,45 @@
 package com.dioproject.service.implementations;
 
+import com.dioproject.integration.ViaCepService;
+import com.dioproject.models.Address;
+import com.dioproject.models.AddressRepository;
 import com.dioproject.models.Customer;
+import com.dioproject.models.CustomerRepository;
+import com.dioproject.service.AddressService;
 import com.dioproject.service.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
+    private final CustomerRepository customerRepository;
+
     @Override
-    public List<Customer> getAllCustomers() {
-        return null;
+    public Iterable<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 
     @Override
     public Customer getCustomerById(Long id) {
-        return null;
+        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 
     @Override
-    public void saveCustomer(Customer customer) {
-
+    public Customer saveCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     @Override
-    public void updateCustomer(Long id, Customer customer) {
-
+    public Customer updateCustomer(Long id, Customer customer) {
+        Customer customerToUpdate = customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+        customer.setId(customerToUpdate.getId());
+        return customerRepository.save(customer);
     }
 
     @Override
     public void deleteCustomerById(Long id) {
-
+        customerRepository.deleteById(id);
     }
 }
