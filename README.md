@@ -1,7 +1,7 @@
 # Projeto ClientesAPI
 API para cadastro de clientes com nome e CEP. O CEP é pesquisado na API do ViaCep, retornando os dados do endereço do cliente para então persistir o objeto completo no banco.
 
-Este projeto foi feito pela plataforma DIO, no Bootcamp Orange Tech + | BackEnd, com o objetivo de praticar Design Patterns em Java.
+Este projeto foi feito pela plataforma DIO, com o objetivo de praticar Spring Data JPA em Java.
 
 Tecnologias utilizadas:
 
